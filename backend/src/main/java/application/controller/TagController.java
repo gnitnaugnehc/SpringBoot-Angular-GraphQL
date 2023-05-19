@@ -1,10 +1,10 @@
-package controller;
+package application.controller;
 
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import model.Tag;
-import repository.TagRepository;
+import application.model.Tag;
+import application.repository.TagRepository;
 
 @Controller
 public class TagController {

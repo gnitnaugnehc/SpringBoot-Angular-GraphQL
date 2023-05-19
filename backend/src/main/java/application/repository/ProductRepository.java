@@ -1,13 +1,13 @@
-package repository;
+package application.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Product;
+import application.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Iterable<Product> findByTags(List<String> tags);
+    Iterable<Product> findByTagsIn(List<String> tags);
 
 }

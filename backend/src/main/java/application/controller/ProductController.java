@@ -1,4 +1,4 @@
-package controller;
+package application.controller;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import model.Product;
-import model.Tag;
-import repository.ProductRepository;
-import repository.TagRepository;
+import application.model.Product;
+import application.model.Tag;
+import application.repository.ProductRepository;
+import application.repository.TagRepository;
 
 @Controller
 public class ProductController {
@@ -34,7 +34,7 @@ public class ProductController {
 
     @QueryMapping
     Iterable<Product> searchProductsByTags(List<String> tags) {
-        return productRepository.findByTags(tags);
+        return productRepository.findByTagsIn(tags);
     }
 
     @MutationMapping
@@ -44,7 +44,7 @@ public class ProductController {
         product.setDescription(description);
         product.setPrice(price);
 
-        List<Tag> tagList = tagRepository.findByName(tags);
+        List<Tag> tagList = tagRepository.findByNameIn(tags);
         product.setTags(tagList);
 
         return productRepository.save(product);
@@ -65,7 +65,7 @@ public class ProductController {
                 product.setPrice(price);
             }
             if (tags != null) {
-                List<Tag> tagList = tagRepository.findByName(tags);
+                List<Tag> tagList = tagRepository.findByNameIn(tags);
                 product.setTags(tagList);
             }
 

@@ -1,15 +1,15 @@
 package application;
 import java.util.List;
 
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import model.Product;
-import model.Tag;
-import repository.ProductRepository;
-import repository.TagRepository;
+import application.model.Product;
+import application.model.Tag;
+import application.repository.ProductRepository;
+import application.repository.TagRepository;
 
 @SpringBootApplication
 public class Application {
@@ -18,8 +18,8 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-    ApplicationRunner applicationRunner(ProductRepository productRepository, TagRepository tagRepository) {
+    @Bean
+    CommandLineRunner commandLineRunner (ProductRepository productRepository, TagRepository tagRepository) {
         return args -> {
             Tag tag1 = new Tag();
             tag1.setName("Electronics");

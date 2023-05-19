@@ -1,13 +1,13 @@
-package repository;
+package application.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Tag;
+import application.model.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
-    List<Tag> findByName(List<String> tags);
+    List<Tag> findByNameIn(List<String> tags);
 
 }
