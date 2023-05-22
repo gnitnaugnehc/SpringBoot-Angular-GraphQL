@@ -1,4 +1,4 @@
-package application.graphql;
+package application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import application.scalar.IDScalar;
 import graphql.schema.GraphQLScalarType;
 
 @Configuration
-public class GraphQlConfig {
+public class GraphQLConfig {
 
     @Bean
     RuntimeWiringConfigurer runtimeWiringConfigurer() {
