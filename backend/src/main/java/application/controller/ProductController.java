@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @QueryMapping
-    Iterable<Product> products() {
+    Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
