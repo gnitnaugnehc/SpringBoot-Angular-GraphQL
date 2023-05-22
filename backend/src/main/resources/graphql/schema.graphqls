@@ -14,7 +14,7 @@ type Tag {
 
 type Query {
   getProduct(id: ID!): Product
-  searchProductsByTags(tags: [String!]!): [Product!]!
+  searchProductsByTagNames(tags: [String!]!): [Product!]!
   getTag(id: ID!): Tag
   getAllTags: [Tag!]!
   getAllProducts: [Product!]!

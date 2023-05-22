@@ -2,6 +2,7 @@ package application.controller;
 
 import java.util.List;
 
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -28,17 +29,18 @@ public class ProductController {
     }
 
     @QueryMapping
-    Product getProduct(Long id) {
+    Product getProduct(@Argument Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
     @QueryMapping
-    Iterable<Product> searchProductsByTags(List<String> tags) {
-        return productRepository.findByTagsIn(tags);
+    Iterable<Product> searchProductsByTagNames(@Argument List<String> tags) {
+        return productRepository.findByTagNames(tags);
     }
 
     @MutationMapping
-    Product createProduct(String name, String description, Double price, List<String> tags) {
+    Product createProduct(@Argument String name, @Argument String description, @Argument Double price,
+            @Argument List<String> tags) {
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
@@ -51,7 +53,8 @@ public class ProductController {
     }
 
     @MutationMapping
-    Product updateProduct(Long id, String name, String description, Double price, List<String> tags) {
+    Product updateProduct(@Argument Long id, @Argument String name, @Argument String description,
+            @Argument Double price, @Argument List<String> tags) {
         Product product = productRepository.findById(id).orElse(null);
 
         if (product != null) {
@@ -76,7 +79,7 @@ public class ProductController {
     }
 
     @MutationMapping
-    Boolean deleteProduct(Long id) {
+    Boolean deleteProduct(@Argument Long id) {
         if (productRepository.existsById(id)) {
             productRepository.deleteById(id);
             return true;
