@@ -16,7 +16,7 @@ public class Tag {
 
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany
     private List<Product> products;
 
     public Tag(Long id, String name, List<Product> products) {
